@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(59, 107, 47);
+    color: rgb(118, 231, 118);
+    font-family:'Courier New', Courier, monospace;
+}
+
+header {
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+span {
+    color: azure;
+}
+
+img#plantImage {
+    margin: 10px auto;
+    display: block;
+    width: 80%;
+}
+
+div#userStats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#userStats meter, div#userStats progress {
+    width: 150px;
+    padding: 0 10px;
+}
+
+div#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+div#buttons button {
+    margin: 5px;
+    width: 250px;
+    border-color: darkgreen;
+    border-radius: 5px;
+    background-color: rgb(170, 214, 160);
+    color: rgb(23, 48, 23);
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+}
