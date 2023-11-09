@@ -11,6 +11,7 @@
     <link href="images/leaf-solid.svg" rel="icon" type="image/x-icon"/>
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <script src="plantObject.js" defer></script>
+    <script src="game.js" defer></script>
 </head>
 <body>
     <header>Foraging Game</header>
@@ -18,19 +19,22 @@
         <img src="https://placehold.co/400x300.png" id="plantImage"/>
         <div id="userStats">
             <label for="hunger">Hunger</label>
-            <meter id="hunger" value="100" max="100" optimum="100" low="20" high="80"></meter>
+            <meter id="hunger" value="10" max="10" optimum="10" low="2" high="8"></meter>
             <label for="health">Health</label>
-            <meter id="health" value="100" max="100" optimum="100" low="20" high="80"></meter>
+            <meter id="health" value="10" max="10" optimum="10" low="2" high="8"></meter>
             <label for="travel">Travel Progress</label>
-            <progress id="travel" value="0" max="100"></progress>
-            <label for="supplies">Cooking Supply Count</label>
-            <span id="supplies">10</span>
+            <progress id="travel" value="0" max="20"></progress>
+            <p>Cooking Supply Count</p>
+            <span id="supplies">3</span>
         </div>
-        <div id="buttons">
-            <button>Move on</button>
-            <button>Eat uncooked</button>
-            <button>Eat cooked (use one cooking supply)</button>
+        <div id="turnButtons">
+            <button id="moveOn">Move on</button>
+            <button id="eatUncooked">Eat uncooked</button>
+            <button id="eatCooked">Eat cooked (-1 cooking supply)</button>
         </div>
+        <div id="partButtons">
+        </div>
+        <input type="submit" id="submit"/>
     </main>
 </body>
 </html>

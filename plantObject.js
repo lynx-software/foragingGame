@@ -1,46 +1,53 @@
-class Plant {
-    constructor(uncookedPartsArray, cookedPartsArray, poisonPartsArray, deathPartsArray, image) {
-        this.ediblePartsUncooked = uncookedPartsArray;
-        this.ediblePartsCooked = cookedPartsArray;
-        this.poisonParts = poisonPartsArray;
-        this.deathParts = deathPartsArray;
-        this.image = image;
-    }
+const edibilityValues = ["uncooked", "cooked", "poison", "death"];
 
-    get imageSrc() {
-        return this.image;
-    }
+class PlantPart {
+    #partName
+    #edibility
 
-    get uncooked() {
-        return this.ediblePartsUncooked;
-    }
+    constructor (partName, edibility) {
+        this.#partName = partName;
+        let validEdibility = false;
 
-    get cooked() {
-        return this.ediblePartsCooked;
-    }
-
-    get poison() {
-        return this.poisonParts;
-    }
-
-    get death() {
-        return this.deathParts;
-    }
-
-    get allParts() {
-        let parts = [];
-        let arrays = [];
-        arrays.push(this.deathParts);
-        arrays.push(this.poisonParts);
-        arrays.push(this.ediblePartsCooked);
-        arrays.push(this.ediblePartsUncooked);
-
-        // iterate through all 4 arrays to compile into 1 array
-        for (let i = 0; i < arrays.length; i++) {
-            for (let j = 0; j < arrays[i].length; j++) {
-                parts.push(arrays[i][j]);
+        // change to while loop?
+        for (let i = 0; (i < edibilityValues.length) && (!validEdibility); i++) {
+            if (edibility == edibilityValues[i]) {
+                validEdibility = true;
             }
         }
+
+        if (validEdibility) {
+            this.#edibility = edibility;
+        } else {
+            throw error("Invalid edibility value");
+        }
+    }
+
+    get name() {
+        return this.#partName;
+    }
+
+    get edibility() {
+        return this.#edibility;
+    }
+}
+
+class Plant {
+    #parts
+    #src
+
+    constructor (plantParts, src) {
+        // // change this to a PlantPart class
+        this.#parts = plantParts;
+        this.#src = src;
+    }
+
+    get src() {
+        return this.#src;
+    }
+
+    allParts() {
+        let parts = this.#parts;
+        // console.log(`full parts array:${this.#parts}`);
 
         // shuffle
         parts.sort(function() {
@@ -48,12 +55,34 @@ class Plant {
             return 0.5 - Math.random();
         });
 
+        // console.log(`parts: ${parts}`);
         return parts;
+    }
+    
+    partEdibility (partName) {
+        for (let i = 0; i < this.#parts.length; i++) {
+            if (this.#parts[i].partName == partName) {
+                return this.#parts[i].partEdibility;
+            }
+        }
+        throw error(`part name ${partName} not found for ${this}`);
     }
 }
 
-let plantsArray = [
-    commonDandelion = new Plant(["flower", "young leaves"], ["roots"], [], []),
-    pineTree = new Plant([], ["needles"], [], []),
-    juniperTree = new Plant([], [], [], ["berry"])
-];
+let plants = new Map();
+
+plants.set("taraxacumOfficinale", new Plant([
+    new PlantPart("flowers", "uncooked"),
+    new PlantPart("young leaves", "uncooked")
+], "images/taraxacumOfficinale.jpg"));
+plants.set("pinusStrobus", new Plant([
+    new PlantPart("needles", "cooked")
+], "images/pinusStrobus.jpg"));
+// By Rob Routledge, Sault College, Bugwood.org - http://www.forestryimages.org/browse/detail.cfm?imgnum=5443106, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=42049155
+plants.set("taxusCanadensis", new Plant([
+    new PlantPart("berries", "death")
+], "images/taxusCanadensis.jpg"));
+// By Skalle-Per Hedenhös - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=80510587
+plants.set("urticaDiocia", new Plant([
+    new PlantPart("leaves", "poison")
+], "images/urticaDiocia.jpg"));
