@@ -54,10 +54,10 @@ div#turnButtons button {
     font-size: large;
 }
 
-div#turnButtons button:active {
+div#turnButtons button.active {
     background-color: yellowgreen;
 }
-
+/* 
 div#partButtons {
     display: flex;
     justify-content: center;
@@ -75,8 +75,13 @@ div#partButtons button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-div#partButtons button:active {
+div#partButtons button.active {
     background-color: yellow;
+} */
+
+select {
+    display: block;
+    margin: 10px auto;
 }
 
 input#submit {

@@ -45,6 +45,10 @@ class Plant {
         return this.#src;
     }
 
+    get parts() {
+        return this.#parts;
+    }
+
     allParts() {
         let parts = this.#parts;
         // console.log(`full parts array:${this.#parts}`);
@@ -57,15 +61,6 @@ class Plant {
 
         // console.log(`parts: ${parts}`);
         return parts;
-    }
-    
-    partEdibility (partName) {
-        for (let i = 0; i < this.#parts.length; i++) {
-            if (this.#parts[i].partName == partName) {
-                return this.#parts[i].partEdibility;
-            }
-        }
-        throw error(`part name ${partName} not found for ${this}`);
     }
 }
 
