@@ -1,0 +1,2 @@
+hint system
+link game stats & visuals better

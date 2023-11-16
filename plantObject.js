@@ -36,7 +36,6 @@ class Plant {
     #src
 
     constructor (plantParts, src) {
-        // // change this to a PlantPart class
         this.#parts = plantParts;
         this.#src = src;
     }
@@ -51,7 +50,6 @@ class Plant {
 
     allParts() {
         let parts = this.#parts;
-        // console.log(`full parts array:${this.#parts}`);
 
         // shuffle
         parts.sort(function() {
@@ -59,7 +57,6 @@ class Plant {
             return 0.5 - Math.random();
         });
 
-        // console.log(`parts: ${parts}`);
         return parts;
     }
 }
@@ -81,7 +78,25 @@ let entries = [["taraxacumOfficinale", new Plant([
 ["articumLappa", new Plant([
     new PlantPart("young leaves", "cooked"),
     new PlantPart("flower stalks", "cooked")
-], "images/articumLappa.jpg")]
+], "images/articumLappa.jpg")],
+["cicutaMaculata", new Plant([
+    new PlantPart("roots", "death")
+], "images/cicutaMaculata.jpg")],
+["verbascumThapsus", new Plant([
+    new PlantPart("leaves", "cooked")
+], "images/verbascumThapsus.jpg")],
+["mitchellaRepens", new Plant([
+    new PlantPart("berry", "uncooked")
+], "images/mitchellaRepens.jpg")],
+["fragariaVirginiana", new Plant([
+    new PlantPart("berries", "uncooked"),
+    new PlantPart("leaves", "cooked")
+], "images/fragariaVirginiana.jpg")],
+["physalisVirginiana", new Plant([
+    new PlantPart("ripe fruit", "uncooked"),
+    new PlantPart("unripe fruit", "poison"),
+    new PlantPart("leaves", "poison")
+], "images/physalisVirginiana.jpg")]
 ];
 
 entries.sort(function() {

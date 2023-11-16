@@ -7,7 +7,7 @@ class Game {
         this.maxHunger = 10;
         this.progress = 0;
         this.maxProgress = 10;
-        this.supply = 5;
+        this.supply = 3;
     }
 
     isEnded() {
