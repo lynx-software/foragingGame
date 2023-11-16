@@ -1,12 +1,19 @@
 class Game {
     constructor() {
+        // make these automatically visually updated in future
         this.health = 10;
         this.maxHealth = 10;
         this.hunger = 10;
         this.maxHunger = 10;
         this.progress = 0;
-        this.maxProgress = 20;
-        this.supply = 3;
+        this.maxProgress = 50;
+        this.supply = 5;
+    }
+
+    checkEnd() {
+        if (this.progress >= this.maxProgress) {
+            alert("congrats");
+        }
     }
 
     addHealth(add) {
@@ -55,13 +62,9 @@ class Game {
     }
 
     useCookingSupply() {
-        if (this.supply > 0) {
-            // visual update
-            this.supply -= 1;
-            return true;
-        } else {
-            return false;
-        }
+        this.supply -= 1;
+        let visual = document.getElementById("supplies");
+        visual.textContent = this.supply;
     }
 
     eatUncookedPlant(part) {
@@ -83,15 +86,21 @@ class Game {
         // check poison/death
         let edibility = part.edibility;
         if ((edibility == "uncooked" ||
-        edibility == "cooked")) {
+        edibility == "cooked") &&
+        this.supply > 0) {
             this.addHunger(4);
             this.useCookingSupply();
             this.addProgress();
-        } else if (edibility == "poison") {
+        } else if (edibility == "poison" && this.supply > 0) {
             this.addHunger(-2);
             this.addHealth(-2);
-        } else if (edibility == "death") {
+            this.useCookingSupply();
+        } else if (edibility == "death" && this.supply > 0) {
             this.addHealth(this.health * -1);
+        } else {
+            // no supplies
+            alert("You have no supplies, you must move on.")
+            this.moveOn();
         }
 
     }
@@ -109,13 +118,13 @@ class Game {
 
 let game = new Game();
 
-// let moveOn = document.getElementById("moveOn");
-// let eatUncooked = document.getElementById("eatUncooked");
-// let eatCooked = document.getElementById("eatCooked");
 let submit = document.getElementById("submit");
 let image = document.getElementById("plantImage");
 
-loadPlant(plants.get("taraxacumOfficinale"));
+// loadPlant(plants.get("taraxacumOfficinale"));
+let firstPlant = plants.entries().next().value[1];
+console.log(firstPlant);
+loadPlant(firstPlant);
 
 submit.addEventListener("click", takeTurn)
 
@@ -136,8 +145,6 @@ function takeTurn() {
         }
     }
 
-    console.log(part);
-
     switch (move) {
         case "moveOn":
             game.moveOn();
@@ -149,8 +156,9 @@ function takeTurn() {
             game.eatCookedPlant(part);
             break;
     }
-    
+
     // check if game end
+    game.checkEnd();
     // progress game
     loadNextPlant();
 }
@@ -160,27 +168,31 @@ function loadNextPlant() {
     let current = image.src;
     let next;
     let position = current.indexOf("images/");
-    current = current.slice(position+7);
+    current = current.slice(position + 7);
     current = current.slice(0, current.length - 4);
 
     // find next plant
     let getNext = false;
+    let foundPlant = false;
     for (const [key, value] of plants) {
         if (key == current) {
             getNext = true;
         } else if (getNext) {
             next = value;
+            foundPlant = true;
             break;
         }
     }
-
-    // load next plant
-    loadPlant(next);
+    if (!foundPlant) {
+        // alert("ran out of plants");
+        loadPlant(firstPlant);
+    } else {
+        loadPlant(next);
+    }
 }
 
 // add another set of buttons for each plant part
 function loadPartsButtons(plant) {
-    // let div = document.getElementById("partButtons");
     let div = document.getElementById("partSelect");
     let parts = plant.allParts();
 
