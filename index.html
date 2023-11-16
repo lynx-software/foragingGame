@@ -23,7 +23,7 @@
             <label for="health">Health</label>
             <meter id="health" value="10" max="10" optimum="10" low="2" high="8"></meter>
             <label for="travel">Travel Progress</label>
-            <progress id="travel" value="0" max="50"></progress>
+            <progress id="travel" value="0" max="10"></progress>
             <p>Cooking Supply Count</p>
             <span id="supplies">5</span>
         </div>
@@ -36,6 +36,11 @@
 
         </select>
         <input type="submit" id="submit"/>
+        <div class="overlay" id="startOverlay">
+            <p>This game requires the use of a field guide and was created based on the book <i>Peterson Field Guide to Edible Wild Plants of Eastern and Central North America</i>. You may use other field guides that cover the same region. <b>You may not use search engines or image recognition software to identify plant species.</b> I cannot enforce these rules, but this is how the game is intended to be played. You may use a digital copy of a field guide if you must, but a physical copy is preferred.</p>
+            <p>Click "Start Game" to begin.</p>
+            <button id="startGame">Start Game</button>
+        </div>
     </main>
 </body>
 </html>

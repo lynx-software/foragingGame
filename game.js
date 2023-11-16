@@ -6,26 +6,28 @@ class Game {
         this.hunger = 10;
         this.maxHunger = 10;
         this.progress = 0;
-        this.maxProgress = 50;
+        this.maxProgress = 10;
         this.supply = 5;
     }
 
-    checkEnd() {
+    isEnded() {
         if (this.progress >= this.maxProgress) {
-            alert("congrats");
+            return true;
         }
+        return false;
     }
 
     addHealth(add) {
         if (this.health + add > this.maxHealth) {
             this.health = this.maxHealth;
         } else if (this.health + add <= 0) {
+            this.health = 0;
             this.die();
         } else {
             this.health += add;
         }
 
-        // visual update
+        // why is it updating visuals. bad
         let meter = document.getElementById("health");
         meter.value = this.health;
     }
@@ -43,7 +45,7 @@ class Game {
             this.hunger += add;
         }
 
-        // visual update
+        // why is it updating visuals. bad
         let meter = document.getElementById("hunger");
         meter.value = this.hunger;
     }
@@ -56,7 +58,7 @@ class Game {
             this.progress += 1;
         }
 
-        // visual update
+        // why is it updating visuals. bad
         let meter = document.getElementById("travel");
         meter.value = this.progress;
     }
@@ -78,8 +80,9 @@ class Game {
             this.addHealth(-2);
         } else if (part.edibility == "death") {
             // MORTIS
-            this.addHealth(this.health * -1);
-        }        
+            let negateHealth = this.health * -1;
+            this.addHealth(negateHealth);
+        }
     }
 
     eatCookedPlant(part) {
@@ -112,16 +115,33 @@ class Game {
 
     die() {
         // MORTIS
-        alert("MORTIS");
+        // alert("MORTIS");
+        let overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+        overlay.id = "mortis";
+        let image = document.createElement('img');
+        image.src = "images/mortis.png";
+        overlay.appendChild(image);
+
+        document.getElementsByTagName("main")[0].appendChild(overlay);
+
+        var audio = new Audio('mortis.mp3');
+        audio.play();
     }
 }
 
 let game = new Game();
 
+let startGameBtn = document.getElementById("startGame");
+
+startGameBtn.addEventListener("click", () => {
+    let overlay = document.getElementById("startOverlay");
+    overlay.remove();
+})
+
 let submit = document.getElementById("submit");
 let image = document.getElementById("plantImage");
 
-// loadPlant(plants.get("taraxacumOfficinale"));
 let firstPlant = plants.entries().next().value[1];
 console.log(firstPlant);
 loadPlant(firstPlant);
@@ -158,9 +178,21 @@ function takeTurn() {
     }
 
     // check if game end
-    game.checkEnd();
-    // progress game
-    loadNextPlant();
+    if (game.isEnded()) {
+        endGame();
+    } else {
+        loadNextPlant();
+    }
+}
+
+function endGame() {
+    let winOverlay = document.createElement("div");
+    winOverlay.classList.add("overlay");
+    winOverlay.textContent = "congrats";
+    document.body.appendChild(winOverlay);
+
+    let audio = new Audio("cheer.mp3");
+    audio.play();
 }
 
 function loadNextPlant() {
@@ -184,7 +216,6 @@ function loadNextPlant() {
         }
     }
     if (!foundPlant) {
-        // alert("ran out of plants");
         loadPlant(firstPlant);
     } else {
         loadPlant(next);
