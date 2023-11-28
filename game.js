@@ -8,6 +8,7 @@ class Game {
         this.progress = 0;
         this.maxProgress = 10;
         this.supply = 3;
+        this.music = new Audio("bgMusic.mp3");
     }
 
     isEnded() {
@@ -115,7 +116,6 @@ class Game {
 
     die() {
         // MORTIS
-        // alert("MORTIS");
         let overlay = document.createElement("div");
         overlay.classList.add("overlay");
         overlay.id = "mortis";
@@ -126,7 +126,9 @@ class Game {
         document.getElementsByTagName("main")[0].appendChild(overlay);
 
         var audio = new Audio('mortis.mp3');
+        audio.volume = 0.2;
         audio.play();
+        this.music.pause();
     }
 }
 
@@ -137,6 +139,8 @@ let startGameBtn = document.getElementById("startGame");
 startGameBtn.addEventListener("click", () => {
     let overlay = document.getElementById("startOverlay");
     overlay.remove();
+    game.music.play();
+    game.music.loop = true;
 })
 
 let submit = document.getElementById("submit");
@@ -192,6 +196,7 @@ function endGame() {
     document.body.appendChild(winOverlay);
 
     let audio = new Audio("cheer.mp3");
+    audio.volume = 0.2;
     audio.play();
 }
 

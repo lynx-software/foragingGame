@@ -106,20 +106,3 @@ entries.sort(function() {
 for (entry of entries) {
     plants.set(entry[0], entry[1]);
 }
-
-// plants.set();
-// plants.set("pinusStrobus", new Plant([
-//     new PlantPart("needles", "cooked")
-// ], "images/pinusStrobus.jpg"));
-// // By Rob Routledge, Sault College, Bugwood.org - http://www.forestryimages.org/browse/detail.cfm?imgnum=5443106, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=42049155
-// plants.set("taxusCanadensis", new Plant([
-//     new PlantPart("berries & seeds", "death")
-// ], "images/taxusCanadensis.jpg"));
-// // By Skalle-Per Hedenhös - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=80510587
-// plants.set("urticaDiocia", new Plant([
-//     new PlantPart("leaves", "poison")
-// ], "images/urticaDiocia.jpg"));
-// plants.set("articumLappa", new Plant([
-//     new PlantPart("young leaves", "cooked"),
-//     new PlantPart("flower stalks", "cooked")
-// ], "images/articumLappa.jpg"));

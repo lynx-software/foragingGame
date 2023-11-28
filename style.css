@@ -8,9 +8,9 @@ body {
 
 main {
     background-color: rgb(59, 107, 47);
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
-    margin: 30px;
+    margin: 20px;
 }
 
 header {
@@ -32,7 +32,7 @@ img#plantImage {
 
 div#userStats {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
@@ -40,6 +40,11 @@ div#userStats {
 div#userStats meter, div#userStats progress {
     width: 150px;
     padding: 0 10px;
+    margin: 0 10px;
+}
+
+div#userStats span {
+    margin: 0 10px;
 }
 
 div#turnButtons {
