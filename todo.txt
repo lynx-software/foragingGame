@@ -1,2 +1,4 @@
 hint system
 link game stats & visuals better
+change hunger label
+fix plant hunger bug

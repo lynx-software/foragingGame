@@ -1,12 +1,11 @@
 class Game {
     constructor() {
-        // make these automatically visually updated in future
         this.health = 10;
         this.maxHealth = 10;
         this.hunger = 10;
         this.maxHunger = 10;
         this.progress = 0;
-        this.maxProgress = 10;
+        this.maxProgress = 20;
         this.supply = 3;
         this.music = new Audio("bgMusic.mp3");
     }
@@ -28,7 +27,6 @@ class Game {
             this.health += add;
         }
 
-        // why is it updating visuals. bad
         let meter = document.getElementById("health");
         meter.value = this.health;
     }
@@ -46,7 +44,6 @@ class Game {
             this.hunger += add;
         }
 
-        // why is it updating visuals. bad
         let meter = document.getElementById("hunger");
         meter.value = this.hunger;
     }
@@ -54,12 +51,10 @@ class Game {
     addProgress() {
         if (this.progress + 1 > this.maxProgress) {
             this.progress = this.maxProgress;
-            // end game
         } else {
             this.progress += 1;
         }
 
-        // why is it updating visuals. bad
         let meter = document.getElementById("travel");
         meter.value = this.progress;
     }
@@ -76,7 +71,7 @@ class Game {
             this.addHunger(2);
             this.addProgress();
         } else if (part.edibility == "cooked" ||
-        part.edibility == "poison") {
+            part.edibility == "poison") {
             this.addHunger(-2);
             this.addHealth(-2);
         } else if (part.edibility == "death") {
@@ -90,13 +85,12 @@ class Game {
         // check poison/death
         let edibility = part.edibility;
         if ((edibility == "uncooked" ||
-        edibility == "cooked") &&
-        this.supply > 0) {
+            edibility == "cooked") &&
+            this.supply > 0) {
             this.addHunger(4);
             this.useCookingSupply();
             this.addProgress();
         } else if (edibility == "poison" && this.supply > 0) {
-            this.addHunger(-2);
             this.addHealth(-2);
             this.useCookingSupply();
         } else if (edibility == "death" && this.supply > 0) {
@@ -147,7 +141,6 @@ let submit = document.getElementById("submit");
 let image = document.getElementById("plantImage");
 
 let firstPlant = plants.entries().next().value[1];
-console.log(firstPlant);
 loadPlant(firstPlant);
 
 submit.addEventListener("click", takeTurn)
@@ -157,7 +150,7 @@ function takeTurn() {
     let move = document.getElementById("turnSelect").value;
     let plant = image.src;
     let position = plant.indexOf("images/");
-    plant = plant.slice(position+7);
+    plant = plant.slice(position + 7);
     plant = plant.slice(0, plant.length - 4);
 
     let part;
@@ -227,8 +220,8 @@ function loadNextPlant() {
     }
 }
 
-// add another set of buttons for each plant part
-function loadPartsButtons(plant) {
+// add plant part options
+function loadParts(plant) {
     let div = document.getElementById("partSelect");
     let parts = plant.allParts();
 
@@ -246,6 +239,6 @@ function loadPartsButtons(plant) {
 }
 
 function loadPlant(plant) {
-    loadPartsButtons(plant);
+    loadParts(plant);
     image.src = plant.src;
 }

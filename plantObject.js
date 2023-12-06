@@ -4,11 +4,10 @@ class PlantPart {
     #partName
     #edibility
 
-    constructor (partName, edibility) {
+    constructor(partName, edibility) {
         this.#partName = partName;
         let validEdibility = false;
 
-        // change to while loop?
         for (let i = 0; (i < edibilityValues.length) && (!validEdibility); i++) {
             if (edibility == edibilityValues[i]) {
                 validEdibility = true;
@@ -35,7 +34,7 @@ class Plant {
     #parts
     #src
 
-    constructor (plantParts, src) {
+    constructor(plantParts, src) {
         this.#parts = plantParts;
         this.#src = src;
     }
@@ -52,7 +51,7 @@ class Plant {
         let parts = this.#parts;
 
         // shuffle
-        parts.sort(function() {
+        parts.sort(function () {
             // generate random number between -0.5 and 0.5
             return 0.5 - Math.random();
         });
@@ -66,7 +65,8 @@ let plants = new Map();
 let entries = [["taraxacumOfficinale", new Plant([
     new PlantPart("flowers", "uncooked"),
     new PlantPart("young leaves", "uncooked")
-], "images/taraxacumOfficinale.jpg")], ["pinusStrobus", new Plant([
+], "images/taraxacumOfficinale.jpg")],
+["pinusStrobus", new Plant([
     new PlantPart("needles", "cooked")
 ], "images/pinusStrobus.jpg")],
 ["taxusCanadensis", new Plant([
@@ -99,7 +99,7 @@ let entries = [["taraxacumOfficinale", new Plant([
 ], "images/physalisVirginiana.jpg")]
 ];
 
-entries.sort(function() {
+entries.sort(function () {
     return 0.5 - Math.random();
 })
 
