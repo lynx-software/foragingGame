@@ -66,15 +66,18 @@ let entries = [["taraxacumOfficinale", new Plant([
     new PlantPart("flowers", "uncooked"),
     new PlantPart("young leaves", "uncooked")
 ], "images/taraxacumOfficinale.jpg")],
+// By John Paul Endicott, CC BY 2.0 DEED, https://creativecommons.org/licenses/by/2.0/
 ["pinusStrobus", new Plant([
     new PlantPart("needles", "cooked")
 ], "images/pinusStrobus.jpg")],
+// Rob Routledge, Creative Commons Attribution 3.0 Unported, https://creativecommons.org/licenses/by/3.0/deed.en
 ["taxusCanadensis", new Plant([
     new PlantPart("berries & seeds", "death")
 ], "images/taxusCanadensis.jpg")],
 ["urticaDiocia", new Plant([
     new PlantPart("leaves", "poison")
 ], "images/urticaDiocia.jpg")],
+// By Dalgial - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=7343093
 ["articumLappa", new Plant([
     new PlantPart("young leaves", "cooked"),
     new PlantPart("flower stalks", "cooked")
@@ -85,13 +88,16 @@ let entries = [["taraxacumOfficinale", new Plant([
 ["verbascumThapsus", new Plant([
     new PlantPart("leaves", "cooked")
 ], "images/verbascumThapsus.jpg")],
+// Nicholas A. Tonelli from Pennsylvania, USA, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons
 ["mitchellaRepens", new Plant([
     new PlantPart("berry", "uncooked")
 ], "images/mitchellaRepens.jpg")],
+// James St. John, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons
 ["fragariaVirginiana", new Plant([
     new PlantPart("berries", "uncooked"),
     new PlantPart("leaves", "cooked")
 ], "images/fragariaVirginiana.jpg")],
+// sonnia hill, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons
 ["physalisVirginiana", new Plant([
     new PlantPart("ripe fruit", "uncooked"),
     new PlantPart("unripe fruit", "poison"),
